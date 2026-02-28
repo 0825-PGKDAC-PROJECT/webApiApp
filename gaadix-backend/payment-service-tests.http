@@ -1,0 +1,61 @@
+### Payment Service API Tests
+
+### 1. Initiate Payment
+POST http://localhost:8084/api/v1/payments
+Content-Type: application/json
+
+{
+  "transactionId": 1,
+  "carId": 1,
+  "buyerId": 2,
+  "sellerId": 1,
+  "amount": 550000,
+  "method": "UPI",
+  "remarks": "Payment for Maruti Swift"
+}
+
+### 2. Process Payment
+POST http://localhost:8084/api/v1/payments/1/process
+
+### 3. Complete Payment
+POST http://localhost:8084/api/v1/payments/1/complete
+
+### 4. Get Payment by ID
+GET http://localhost:8084/api/v1/payments/1
+
+### 5. Get Payments by Buyer
+GET http://localhost:8084/api/v1/payments/buyer/2
+
+### 6. Get Payments by Seller
+GET http://localhost:8084/api/v1/payments/seller/1
+
+### 7. Refund Payment
+POST http://localhost:8084/api/v1/payments/1/refund
+
+### 8. Initiate Credit Card Payment
+POST http://localhost:8084/api/v1/payments
+Content-Type: application/json
+
+{
+  "transactionId": 2,
+  "carId": 2,
+  "buyerId": 3,
+  "sellerId": 1,
+  "amount": 750000,
+  "method": "CREDIT_CARD",
+  "remarks": "Payment for Honda City"
+}
+
+### 9. Initiate EMI Payment
+POST http://localhost:8084/api/v1/payments
+Content-Type: application/json
+
+{
+  "transactionId": 3,
+  "carId": 3,
+  "buyerId": 4,
+  "sellerId": 2,
+  "amount": 1200000,
+  "method": "EMI",
+  "remarks": "EMI payment for Hyundai Creta"
+}

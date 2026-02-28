@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: payment-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/gaadix_payment_db
+    username: KD2-GANESH-92393
+    password: manager
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+
+server:
+  port: 8084
+
+# Payment Gateway Configuration (Mock for now)
+payment:
+  gateway:
+    razorpay:
+      key: test_key
+      secret: test_secret
+    stripe:
+      key: test_key
+      secret: test_secret
