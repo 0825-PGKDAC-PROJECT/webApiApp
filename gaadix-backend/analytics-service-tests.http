@@ -1,0 +1,10 @@
+### Analytics Service API Tests
+
+### 1. Get Dashboard Statistics
+GET http://localhost:8089/api/v1/analytics/dashboard
+
+### 2. Get Sales Analytics
+GET http://localhost:8089/api/v1/analytics/sales
+
+### 3. Get Popular Brands
+GET http://localhost:8089/api/v1/analytics/popular-brands
