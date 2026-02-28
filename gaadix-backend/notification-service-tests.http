@@ -1,0 +1,85 @@
+### Notification Service API Tests
+
+### 1. Send Email Notification - Registration
+POST http://localhost:8087/api/v1/notifications
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "type": "REGISTRATION",
+  "channel": "EMAIL",
+  "recipient": "user@example.com",
+  "subject": "Welcome to GaadiX",
+  "message": "Thank you for registering with GaadiX. Your account has been created successfully."
+}
+
+### 2. Send SMS Notification - Verification
+POST http://localhost:8087/api/v1/notifications
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "type": "VERIFICATION",
+  "channel": "SMS",
+  "recipient": "+919876543210",
+  "subject": "Verification Code",
+  "message": "Your GaadiX verification code is: 123456. Valid for 10 minutes."
+}
+
+### 3. Send Push Notification - Payment
+POST http://localhost:8087/api/v1/notifications
+Content-Type: application/json
+
+{
+  "userId": 2,
+  "type": "PAYMENT",
+  "channel": "PUSH",
+  "recipient": "device_token_123",
+  "subject": "Payment Successful",
+  "message": "Your payment of ₹5,50,000 has been processed successfully."
+}
+
+### 4. Send Email - Booking Confirmation
+POST http://localhost:8087/api/v1/notifications
+Content-Type: application/json
+
+{
+  "userId": 3,
+  "type": "BOOKING",
+  "channel": "EMAIL",
+  "recipient": "buyer@example.com",
+  "subject": "Booking Confirmed",
+  "message": "Your booking for Maruti Swift has been confirmed. Booking ID: BK12345"
+}
+
+### 5. Send SMS - Alert
+POST http://localhost:8087/api/v1/notifications
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "type": "ALERT",
+  "channel": "SMS",
+  "recipient": "+919876543210",
+  "subject": "Security Alert",
+  "message": "New login detected from Mumbai. If this wasn't you, please secure your account."
+}
+
+### 6. Send Email - Promotional
+POST http://localhost:8087/api/v1/notifications
+Content-Type: application/json
+
+{
+  "userId": 4,
+  "type": "PROMOTIONAL",
+  "channel": "EMAIL",
+  "recipient": "customer@example.com",
+  "subject": "Special Offer - 10% Off",
+  "message": "Get 10% off on your next car purchase. Use code: GAADIX10. Valid till 31st Dec."
+}
+
+### 7. Get User Notifications
+GET http://localhost:8087/api/v1/notifications/user/1
+
+### 8. Get Notification by ID
+GET http://localhost:8087/api/v1/notifications/1
