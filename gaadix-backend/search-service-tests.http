@@ -1,0 +1,78 @@
+### Search Service API Tests
+
+### 1. Basic Search by Keyword
+POST http://localhost:8083/api/v1/search/vehicles
+Content-Type: application/json
+
+{
+  "keyword": "swift",
+  "page": 0,
+  "size": 10
+}
+
+### 2. Search by Brand and City
+POST http://localhost:8083/api/v1/search/vehicles
+Content-Type: application/json
+
+{
+  "brand": "Maruti Suzuki",
+  "city": "Mumbai",
+  "status": "AVAILABLE"
+}
+
+### 3. Search with Price Range
+POST http://localhost:8083/api/v1/search/vehicles
+Content-Type: application/json
+
+{
+  "minPrice": 300000,
+  "maxPrice": 700000,
+  "fuelType": "PETROL",
+  "page": 0,
+  "size": 20
+}
+
+### 4. Search by Year Range
+POST http://localhost:8083/api/v1/search/vehicles
+Content-Type: application/json
+
+{
+  "minYear": 2018,
+  "maxYear": 2023,
+  "transmission": "AUTOMATIC"
+}
+
+### 5. Location-based Search (Geo-spatial)
+POST http://localhost:8083/api/v1/search/vehicles
+Content-Type: application/json
+
+{
+  "latitude": 19.0760,
+  "longitude": 72.8777,
+  "radiusKm": 50,
+  "status": "AVAILABLE"
+}
+
+### 6. Advanced Search with Multiple Filters
+POST http://localhost:8083/api/v1/search/vehicles
+Content-Type: application/json
+
+{
+  "brand": "Maruti Suzuki",
+  "fuelType": "PETROL",
+  "transmission": "MANUAL",
+  "minPrice": 400000,
+  "maxPrice": 600000,
+  "maxOdometer": 50000,
+  "minYear": 2019,
+  "city": "Mumbai",
+  "status": "AVAILABLE",
+  "sortBy": "basePrice",
+  "sortDirection": "ASC"
+}
+
+### 7. Simple GET Search
+GET http://localhost:8083/api/v1/search/vehicles?keyword=swift&brand=Maruti%20Suzuki&page=0&size=10
+
+### 8. Search by City (GET)
+GET http://localhost:8083/api/v1/search/vehicles?city=Mumbai&page=0&size=20

@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: search-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/gaadix_inventory_db
+    username: KD2-GANESH-92393
+    password: manager
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+
+server:
+  port: 8083
+
+# Feign client configuration
+feign:
+  client:
+    config:
+      inventory-service:
+        url: http://localhost:8082
