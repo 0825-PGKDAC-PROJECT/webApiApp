@@ -1,0 +1,138 @@
+### GaadiX User Service API Tests
+### Use this file in STS: Right-click → Run As → HTTP Request
+
+### 1. Register New User
+POST http://localhost:8081/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john@gaadix.com",
+  "password": "password123",
+  "phone": "9876543210"
+}
+
+###
+
+### 2. Register Admin User
+POST http://localhost:8081/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "firstName": "Admin",
+  "lastName": "User",
+  "email": "admin@gaadix.com",
+  "password": "admin123",
+  "phone": "9876543211",
+  "roles": ["ADMIN"]
+}
+
+###
+
+### 3. Login User
+POST http://localhost:8081/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "john@gaadix.com",
+  "password": "password123"
+}
+
+###
+
+### 4. Login Admin
+POST http://localhost:8081/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@gaadix.com",
+  "password": "admin123"
+}
+
+###
+
+### 5. Get User by ID (Replace YOUR_TOKEN with accessToken from login)
+GET http://localhost:8081/api/v1/users/1
+Authorization: Bearer YOUR_TOKEN
+
+###
+
+### 6. Get User by Email
+GET http://localhost:8081/api/v1/users/email/john@gaadix.com
+Authorization: Bearer YOUR_TOKEN
+
+###
+
+### 7. Get All Users (Admin Only)
+GET http://localhost:8081/api/v1/users
+Authorization: Bearer YOUR_ADMIN_TOKEN
+
+###
+
+### 8. Update User
+PUT http://localhost:8081/api/v1/users/1
+Authorization: Bearer YOUR_TOKEN
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "phone": "9876543210"
+}
+
+###
+
+### 9. Refresh Token (Replace YOUR_REFRESH_TOKEN)
+POST http://localhost:8081/api/v1/auth/refresh?refreshToken=YOUR_REFRESH_TOKEN
+
+###
+
+### 10. Logout
+POST http://localhost:8081/api/v1/auth/logout
+Authorization: Bearer YOUR_TOKEN
+
+###
+
+### Test Error Scenarios
+
+### 11. Duplicate Email (Should Fail)
+POST http://localhost:8081/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "firstName": "Jane",
+  "lastName": "Doe",
+  "email": "john@gaadix.com",
+  "password": "password123",
+  "phone": "9876543212"
+}
+
+###
+
+### 12. Invalid Login (Should Fail)
+POST http://localhost:8081/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "john@gaadix.com",
+  "password": "wrongpassword"
+}
+
+###
+
+### 13. Access Without Token (Should Fail)
+GET http://localhost:8081/api/v1/users/1
+
+###
+
+### 14. Invalid Token (Should Fail)
+GET http://localhost:8081/api/v1/users/1
+Authorization: Bearer invalid_token_here
+
+###
+
+### Health Check
+GET http://localhost:8081/actuator/health
+
+###

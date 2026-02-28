@@ -33,6 +33,7 @@
 		<module>gaadix-notification-service</module>
 		<module>gaadix-search-service</module>
 		<module>gaadix-gateway</module>
+		<module>gaadix-api-gateway</module>
 	</modules>
 
 	<properties>

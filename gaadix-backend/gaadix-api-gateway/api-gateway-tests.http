@@ -1,0 +1,83 @@
+### API Gateway Tests - Port 8080
+
+### 1. Register User (via Gateway - No Auth)
+POST http://localhost:8080/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "firstName": "Gateway",
+  "lastName": "User",
+  "email": "gateway@gaadix.com",
+  "password": "password123",
+  "phone": "9876543210"
+}
+
+### 2. Login User (via Gateway - No Auth)
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "gateway@gaadix.com",
+  "password": "password123"
+}
+
+### 3. Search Vehicles (via Gateway - No Auth)
+GET http://localhost:8080/api/v1/search/vehicles?brand=Maruti&minPrice=300000&maxPrice=800000
+
+### 4. Get Vehicle by ID (via Gateway - Auth Required)
+GET http://localhost:8080/api/v1/vehicles/1
+Authorization: Bearer YOUR_ACCESS_TOKEN
+
+### 5. Get Pricing Estimate (via Gateway - No Auth)
+GET http://localhost:8080/api/v1/pricing/estimate?vehicleId=1
+
+### 6. Create Payment (via Gateway - Auth Required)
+POST http://localhost:8080/api/v1/payments
+Content-Type: application/json
+Authorization: Bearer YOUR_ACCESS_TOKEN
+
+{
+  "vehicleId": 1,
+  "buyerId": 1,
+  "amount": 550000,
+  "paymentMethod": "UPI"
+}
+
+### 7. Verify RTO (via Gateway - Auth Required)
+POST http://localhost:8080/api/v1/rto/verify
+Content-Type: application/json
+Authorization: Bearer YOUR_ACCESS_TOKEN
+
+{
+  "registrationNumber": "MH12AB1234",
+  "vehicleId": 1
+}
+
+### 8. Get Dashboard Analytics (via Gateway - Auth Required)
+GET http://localhost:8080/api/v1/analytics/dashboard
+Authorization: Bearer YOUR_ACCESS_TOKEN
+
+### 9. Check Fraud Risk (via Gateway - Auth Required)
+POST http://localhost:8080/api/v1/fraud/check
+Content-Type: application/json
+Authorization: Bearer YOUR_ACCESS_TOKEN
+
+{
+  "vehicleId": 1,
+  "sellerId": 2,
+  "buyerId": 1,
+  "transactionAmount": 550000
+}
+
+### 10. Send Notification (via Gateway - Auth Required)
+POST http://localhost:8080/api/v1/notifications/send
+Content-Type: application/json
+Authorization: Bearer YOUR_ACCESS_TOKEN
+
+{
+  "userId": 1,
+  "type": "EMAIL",
+  "notificationType": "PAYMENT_SUCCESS",
+  "subject": "Payment Successful",
+  "message": "Your payment of ₹550000 was successful"
+}
