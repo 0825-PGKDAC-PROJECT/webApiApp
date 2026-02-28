@@ -22,13 +22,13 @@ public class FraudController {
             @Valid @RequestBody FraudCheckRequest request) {
         FraudCheckResponse response = fraudService.checkFraud(request);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ApiResponse.success(response, "Fraud check completed"));
+                .body(ApiResponse.success("Fraud check completed", response));
     }
     
     @GetMapping("/transaction/{transactionId}")
     public ResponseEntity<ApiResponse<FraudCheckResponse>> getFraudCheck(
             @PathVariable Long transactionId) {
         FraudCheckResponse response = fraudService.getFraudCheck(transactionId);
-        return ResponseEntity.ok(ApiResponse.success(response, "Fraud check retrieved"));
+        return ResponseEntity.ok(ApiResponse.success("Fraud check retrieved", response));
     }
 }

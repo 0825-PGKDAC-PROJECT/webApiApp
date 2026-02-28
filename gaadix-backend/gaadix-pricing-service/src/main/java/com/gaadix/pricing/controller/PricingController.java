@@ -22,13 +22,13 @@ public class PricingController {
             @Valid @RequestBody PriceEstimateRequest request) {
         PriceEstimateResponse response = pricingService.calculatePrice(request);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ApiResponse.success(response, "Price estimated successfully"));
+                .body(ApiResponse.success("Price estimated successfully", response));
     }
     
     @GetMapping("/estimate/{carId}")
     public ResponseEntity<ApiResponse<PriceEstimateResponse>> getEstimate(
             @PathVariable Long carId) {
         PriceEstimateResponse response = pricingService.getEstimate(carId);
-        return ResponseEntity.ok(ApiResponse.success(response, "Estimate retrieved successfully"));
+        return ResponseEntity.ok(ApiResponse.success("Estimate retrieved successfully", response));
     }
 }

@@ -20,7 +20,7 @@ public class SearchController {
     public ResponseEntity<ApiResponse<SearchResponse<Car>>> searchVehicles(
             @RequestBody SearchRequest request) {
         SearchResponse<Car> response = searchService.searchVehicles(request);
-        return ResponseEntity.ok(ApiResponse.success(response, "Search completed successfully"));
+        return ResponseEntity.ok(ApiResponse.success("Search completed successfully", response));
     }
     
     @GetMapping("/vehicles")
@@ -40,6 +40,6 @@ public class SearchController {
                 .build();
         
         SearchResponse<Car> response = searchService.searchVehicles(request);
-        return ResponseEntity.ok(ApiResponse.success(response, "Search completed successfully"));
+        return ResponseEntity.ok(ApiResponse.success("Search completed successfully", response));
     }
 }

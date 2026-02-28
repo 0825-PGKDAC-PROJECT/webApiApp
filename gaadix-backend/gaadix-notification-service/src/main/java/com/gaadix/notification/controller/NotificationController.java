@@ -24,20 +24,20 @@ public class NotificationController {
             @Valid @RequestBody NotificationRequest request) {
         NotificationResponse response = notificationService.sendNotification(request);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ApiResponse.success(response, "Notification sent successfully"));
+                .body(ApiResponse.success("Notification sent successfully", response));
     }
     
     @GetMapping("/user/{userId}")
     public ResponseEntity<ApiResponse<List<NotificationResponse>>> getUserNotifications(
             @PathVariable Long userId) {
         List<NotificationResponse> response = notificationService.getUserNotifications(userId);
-        return ResponseEntity.ok(ApiResponse.success(response, "Notifications retrieved successfully"));
+        return ResponseEntity.ok(ApiResponse.success("Notifications retrieved successfully", response));
     }
     
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<NotificationResponse>> getNotification(
             @PathVariable Long id) {
         NotificationResponse response = notificationService.getNotification(id);
-        return ResponseEntity.ok(ApiResponse.success(response, "Notification retrieved successfully"));
+        return ResponseEntity.ok(ApiResponse.success("Notification retrieved successfully", response));
     }
 }

@@ -17,18 +17,18 @@ public class AnalyticsController {
     @GetMapping("/dashboard")
     public ResponseEntity<ApiResponse<DashboardStats>> getDashboard() {
         DashboardStats stats = analyticsService.getDashboardStats();
-        return ResponseEntity.ok(ApiResponse.success(stats, "Dashboard stats retrieved"));
+        return ResponseEntity.ok(ApiResponse.success("Dashboard stats retrieved", stats));
     }
     
     @GetMapping("/sales")
     public ResponseEntity<ApiResponse<SalesAnalytics>> getSalesAnalytics() {
         SalesAnalytics analytics = analyticsService.getSalesAnalytics();
-        return ResponseEntity.ok(ApiResponse.success(analytics, "Sales analytics retrieved"));
+        return ResponseEntity.ok(ApiResponse.success("Sales analytics retrieved", analytics));
     }
     
     @GetMapping("/popular-brands")
     public ResponseEntity<ApiResponse<PopularBrands>> getPopularBrands() {
         PopularBrands brands = analyticsService.getPopularBrands();
-        return ResponseEntity.ok(ApiResponse.success(brands, "Popular brands retrieved"));
+        return ResponseEntity.ok(ApiResponse.success("Popular brands retrieved", brands));
     }
 }

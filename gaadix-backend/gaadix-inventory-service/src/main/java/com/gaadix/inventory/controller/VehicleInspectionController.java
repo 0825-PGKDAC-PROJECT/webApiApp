@@ -26,18 +26,18 @@ public class VehicleInspectionController {
         request.setCarId(carId);
         VehicleInspection inspection = inspectionService.createInspection(request);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ApiResponse.success(inspection, "Inspection created successfully"));
+                .body(ApiResponse.success("Inspection created successfully", inspection));
     }
     
     @GetMapping
     public ResponseEntity<ApiResponse<List<VehicleInspection>>> getInspections(@PathVariable Long carId) {
         List<VehicleInspection> inspections = inspectionService.getInspectionsByCarId(carId);
-        return ResponseEntity.ok(ApiResponse.success(inspections, "Inspections retrieved successfully"));
+        return ResponseEntity.ok(ApiResponse.success("Inspections retrieved successfully", inspections));
     }
     
     @GetMapping("/latest")
     public ResponseEntity<ApiResponse<VehicleInspection>> getLatestInspection(@PathVariable Long carId) {
         VehicleInspection inspection = inspectionService.getLatestInspection(carId);
-        return ResponseEntity.ok(ApiResponse.success(inspection, "Latest inspection retrieved successfully"));
+        return ResponseEntity.ok(ApiResponse.success("Latest inspection retrieved successfully", inspection));
     }
 }

@@ -26,13 +26,13 @@ public class VehicleController {
             @RequestHeader("X-User-Id") Long sellerId) {
         VehicleResponse response = vehicleService.createVehicle(request, sellerId);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ApiResponse.success(response, "Vehicle created successfully"));
+                .body(ApiResponse.success("Vehicle created successfully", response));
     }
     
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<VehicleResponse>> getVehicle(@PathVariable Long id) {
         VehicleResponse response = vehicleService.getVehicleById(id);
-        return ResponseEntity.ok(ApiResponse.success(response, "Vehicle retrieved successfully"));
+        return ResponseEntity.ok(ApiResponse.success("Vehicle retrieved successfully", response));
     }
     
     @GetMapping
@@ -41,7 +41,7 @@ public class VehicleController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size) {
         Page<VehicleResponse> response = vehicleService.getAllVehicles(status, PageRequest.of(page, size));
-        return ResponseEntity.ok(ApiResponse.success(response, "Vehicles retrieved successfully"));
+        return ResponseEntity.ok(ApiResponse.success("Vehicles retrieved successfully", response));
     }
     
     @GetMapping("/seller/{sellerId}")
@@ -50,7 +50,7 @@ public class VehicleController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size) {
         Page<VehicleResponse> response = vehicleService.getVehiclesBySeller(sellerId, PageRequest.of(page, size));
-        return ResponseEntity.ok(ApiResponse.success(response, "Seller vehicles retrieved successfully"));
+        return ResponseEntity.ok(ApiResponse.success("Seller vehicles retrieved successfully", response));
     }
     
     @PutMapping("/{id}")
@@ -58,18 +58,18 @@ public class VehicleController {
             @PathVariable Long id,
             @Valid @RequestBody VehicleRequest request) {
         VehicleResponse response = vehicleService.updateVehicle(id, request);
-        return ResponseEntity.ok(ApiResponse.success(response, "Vehicle updated successfully"));
+        return ResponseEntity.ok(ApiResponse.success("Vehicle updated successfully", response));
     }
     
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<Void>> deleteVehicle(@PathVariable Long id) {
         vehicleService.deleteVehicle(id);
-        return ResponseEntity.ok(ApiResponse.success(null, "Vehicle deleted successfully"));
+        return ResponseEntity.ok(ApiResponse.success("Vehicle deleted successfully", null));
     }
     
     @PostMapping("/{id}/publish")
     public ResponseEntity<ApiResponse<VehicleResponse>> publishVehicle(@PathVariable Long id) {
         VehicleResponse response = vehicleService.publishVehicle(id);
-        return ResponseEntity.ok(ApiResponse.success(response, "Vehicle published successfully"));
+        return ResponseEntity.ok(ApiResponse.success("Vehicle published successfully", response));
     }
 }

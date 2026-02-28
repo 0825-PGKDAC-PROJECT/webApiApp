@@ -25,18 +25,18 @@ public class VehicleImageController {
             @RequestParam(defaultValue = "false") boolean isPrimary) {
         VehicleImage image = imageService.addImage(carId, imageUrl, imageType, isPrimary);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ApiResponse.success(image, "Image added successfully"));
+                .body(ApiResponse.success("Image added successfully", image));
     }
     
     @GetMapping
     public ResponseEntity<ApiResponse<List<VehicleImage>>> getImages(@PathVariable Long carId) {
         List<VehicleImage> images = imageService.getImagesByCarId(carId);
-        return ResponseEntity.ok(ApiResponse.success(images, "Images retrieved successfully"));
+        return ResponseEntity.ok(ApiResponse.success("Images retrieved successfully", images));
     }
     
     @DeleteMapping("/{imageId}")
     public ResponseEntity<ApiResponse<Void>> deleteImage(@PathVariable Long imageId) {
         imageService.deleteImage(imageId);
-        return ResponseEntity.ok(ApiResponse.success(null, "Image deleted successfully"));
+        return ResponseEntity.ok(ApiResponse.success("Image deleted successfully", null));
     }
 }

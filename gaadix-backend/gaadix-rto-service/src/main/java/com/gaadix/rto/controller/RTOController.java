@@ -22,13 +22,13 @@ public class RTOController {
             @Valid @RequestBody RTOVerificationRequest request) {
         RTOVerificationResponse response = rtoService.verifyVehicle(request);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ApiResponse.success(response, "Verification initiated"));
+                .body(ApiResponse.success("Verification initiated", response));
     }
     
     @GetMapping("/verify/{registrationNumber}")
     public ResponseEntity<ApiResponse<RTOVerificationResponse>> getVerification(
             @PathVariable String registrationNumber) {
         RTOVerificationResponse response = rtoService.getVerification(registrationNumber);
-        return ResponseEntity.ok(ApiResponse.success(response, "Verification retrieved"));
+        return ResponseEntity.ok(ApiResponse.success("Verification retrieved", response));
     }
 }

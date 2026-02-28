@@ -24,44 +24,44 @@ public class PaymentController {
             @Valid @RequestBody PaymentRequest request) {
         PaymentResponse response = paymentService.initiatePayment(request);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ApiResponse.success(response, "Payment initiated successfully"));
+                .body(ApiResponse.success("Payment initiated successfully", response));
     }
     
     @PostMapping("/{id}/process")
     public ResponseEntity<ApiResponse<PaymentResponse>> processPayment(@PathVariable Long id) {
         PaymentResponse response = paymentService.processPayment(id);
-        return ResponseEntity.ok(ApiResponse.success(response, "Payment processing started"));
+        return ResponseEntity.ok(ApiResponse.success("Payment processing started", response));
     }
     
     @PostMapping("/{id}/complete")
     public ResponseEntity<ApiResponse<PaymentResponse>> completePayment(@PathVariable Long id) {
         PaymentResponse response = paymentService.completePayment(id);
-        return ResponseEntity.ok(ApiResponse.success(response, "Payment completed successfully"));
+        return ResponseEntity.ok(ApiResponse.success("Payment completed successfully", response));
     }
     
     @PostMapping("/{id}/refund")
     public ResponseEntity<ApiResponse<PaymentResponse>> refundPayment(@PathVariable Long id) {
         PaymentResponse response = paymentService.refundPayment(id);
-        return ResponseEntity.ok(ApiResponse.success(response, "Payment refunded successfully"));
+        return ResponseEntity.ok(ApiResponse.success("Payment refunded successfully", response));
     }
     
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<PaymentResponse>> getPayment(@PathVariable Long id) {
         PaymentResponse response = paymentService.getPaymentById(id);
-        return ResponseEntity.ok(ApiResponse.success(response, "Payment retrieved successfully"));
+        return ResponseEntity.ok(ApiResponse.success("Payment retrieved successfully", response));
     }
     
     @GetMapping("/buyer/{buyerId}")
     public ResponseEntity<ApiResponse<List<PaymentResponse>>> getPaymentsByBuyer(
             @PathVariable Long buyerId) {
         List<PaymentResponse> response = paymentService.getPaymentsByBuyer(buyerId);
-        return ResponseEntity.ok(ApiResponse.success(response, "Buyer payments retrieved successfully"));
+        return ResponseEntity.ok(ApiResponse.success("Buyer payments retrieved successfully", response));
     }
     
     @GetMapping("/seller/{sellerId}")
     public ResponseEntity<ApiResponse<List<PaymentResponse>>> getPaymentsBySeller(
             @PathVariable Long sellerId) {
         List<PaymentResponse> response = paymentService.getPaymentsBySeller(sellerId);
-        return ResponseEntity.ok(ApiResponse.success(response, "Seller payments retrieved successfully"));
+        return ResponseEntity.ok(ApiResponse.success("Seller payments retrieved successfully", response));
     }
 }
