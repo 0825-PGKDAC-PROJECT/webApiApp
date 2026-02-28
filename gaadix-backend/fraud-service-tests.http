@@ -1,0 +1,88 @@
+### Fraud Detection Service API Tests
+
+### 1. Check Fraud - Low Risk (Small Amount, Existing User)
+POST http://localhost:8088/api/v1/fraud/check
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "transactionId": 1,
+  "carId": 1,
+  "amount": 300000,
+  "ipAddress": "103.45.67.89",
+  "deviceId": "device_123",
+  "location": "Mumbai"
+}
+
+### 2. Check Fraud - Medium Risk (High Amount)
+POST http://localhost:8088/api/v1/fraud/check
+Content-Type: application/json
+
+{
+  "userId": 2,
+  "transactionId": 2,
+  "carId": 2,
+  "amount": 1200000,
+  "ipAddress": "103.45.67.90",
+  "deviceId": "device_456",
+  "location": "Delhi"
+}
+
+### 3. Check Fraud - High Risk (New User, High Amount)
+POST http://localhost:8088/api/v1/fraud/check
+Content-Type: application/json
+
+{
+  "userId": 999,
+  "transactionId": 3,
+  "carId": 3,
+  "amount": 1500000,
+  "ipAddress": "192.168.1.1",
+  "deviceId": "device_789",
+  "location": "Unknown"
+}
+
+### 4. Check Fraud - Critical Risk (Very High Amount, Suspicious IP)
+POST http://localhost:8088/api/v1/fraud/check
+Content-Type: application/json
+
+{
+  "userId": 998,
+  "transactionId": 4,
+  "carId": 4,
+  "amount": 2500000,
+  "ipAddress": "192.168.0.1",
+  "deviceId": "device_suspicious",
+  "location": "Unknown"
+}
+
+### 5. Get Fraud Check by Transaction ID
+GET http://localhost:8088/api/v1/fraud/transaction/1
+
+### 6. Check Fraud - Multiple Transactions Same User
+POST http://localhost:8088/api/v1/fraud/check
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "transactionId": 5,
+  "carId": 5,
+  "amount": 800000,
+  "ipAddress": "103.45.67.89",
+  "deviceId": "device_123",
+  "location": "Mumbai"
+}
+
+### 7. Check Fraud - Rapid Transaction
+POST http://localhost:8088/api/v1/fraud/check
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "transactionId": 6,
+  "carId": 6,
+  "amount": 500000,
+  "ipAddress": "103.45.67.89",
+  "deviceId": "device_123",
+  "location": "Mumbai"
+}
