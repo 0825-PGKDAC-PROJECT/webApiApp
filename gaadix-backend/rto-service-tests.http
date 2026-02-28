@@ -1,0 +1,72 @@
+### RTO Service API Tests
+
+### 1. Verify Valid Vehicle (Maharashtra)
+POST http://localhost:8085/api/v1/rto/verify
+Content-Type: application/json
+
+{
+  "registrationNumber": "MH12AB1234",
+  "rtoCode": "MH12",
+  "manufacturer": "Maruti Suzuki",
+  "model": "Swift",
+  "year": 2020,
+  "fuelType": "PETROL"
+}
+
+### 2. Verify Valid Vehicle (Delhi)
+POST http://localhost:8085/api/v1/rto/verify
+Content-Type: application/json
+
+{
+  "registrationNumber": "DL01CA5678",
+  "rtoCode": "DL01",
+  "manufacturer": "Hyundai",
+  "model": "Creta",
+  "year": 2021,
+  "fuelType": "DIESEL"
+}
+
+### 3. Verify Valid Vehicle (Karnataka)
+POST http://localhost:8085/api/v1/rto/verify
+Content-Type: application/json
+
+{
+  "registrationNumber": "KA05MN9876",
+  "rtoCode": "KA05",
+  "manufacturer": "Honda",
+  "model": "City",
+  "year": 2019,
+  "fuelType": "PETROL"
+}
+
+### 4. Verify Invalid Vehicle (Wrong Format)
+POST http://localhost:8085/api/v1/rto/verify
+Content-Type: application/json
+
+{
+  "registrationNumber": "INVALID123",
+  "rtoCode": "XX99",
+  "manufacturer": "Test",
+  "model": "Test",
+  "year": 2020,
+  "fuelType": "PETROL"
+}
+
+### 5. Get Verification by Registration Number
+GET http://localhost:8085/api/v1/rto/verify/MH12AB1234
+
+### 6. Get Verification by Registration Number (Delhi)
+GET http://localhost:8085/api/v1/rto/verify/DL01CA5678
+
+### 7. Verify Electric Vehicle
+POST http://localhost:8085/api/v1/rto/verify
+Content-Type: application/json
+
+{
+  "registrationNumber": "TN09EV1234",
+  "rtoCode": "TN09",
+  "manufacturer": "Tata",
+  "model": "Nexon EV",
+  "year": 2022,
+  "fuelType": "ELECTRIC"
+}
