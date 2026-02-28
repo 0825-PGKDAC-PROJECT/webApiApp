@@ -1,0 +1,82 @@
+### Pricing Service API Tests
+
+### 1. Calculate Price - New Car (2023)
+POST http://localhost:8086/api/v1/pricing/estimate
+Content-Type: application/json
+
+{
+  "carId": 1,
+  "brand": "Maruti Suzuki",
+  "model": "Swift",
+  "year": 2023,
+  "odometer": 5000,
+  "originalPrice": 800000
+}
+
+### 2. Calculate Price - 3 Year Old Car
+POST http://localhost:8086/api/v1/pricing/estimate
+Content-Type: application/json
+
+{
+  "carId": 2,
+  "brand": "Hyundai",
+  "model": "Creta",
+  "year": 2021,
+  "odometer": 35000,
+  "originalPrice": 1500000
+}
+
+### 3. Calculate Price - 5 Year Old Car High Mileage
+POST http://localhost:8086/api/v1/pricing/estimate
+Content-Type: application/json
+
+{
+  "carId": 3,
+  "brand": "Honda",
+  "model": "City",
+  "year": 2019,
+  "odometer": 85000,
+  "originalPrice": 1200000
+}
+
+### 4. Calculate Price - Old Car (2015)
+POST http://localhost:8086/api/v1/pricing/estimate
+Content-Type: application/json
+
+{
+  "carId": 4,
+  "brand": "Maruti Suzuki",
+  "model": "Alto",
+  "year": 2015,
+  "odometer": 120000,
+  "originalPrice": 400000
+}
+
+### 5. Get Price Estimate by Car ID
+GET http://localhost:8086/api/v1/pricing/estimate/1
+
+### 6. Calculate Price - Luxury Car
+POST http://localhost:8086/api/v1/pricing/estimate
+Content-Type: application/json
+
+{
+  "carId": 5,
+  "brand": "BMW",
+  "model": "3 Series",
+  "year": 2020,
+  "odometer": 25000,
+  "originalPrice": 4500000
+}
+
+### 7. Calculate Price - Electric Vehicle
+POST http://localhost:8086/api/v1/pricing/estimate
+Content-Type: application/json
+
+{
+  "carId": 6,
+  "brand": "Tata",
+  "model": "Nexon EV",
+  "year": 2022,
+  "odometer": 15000,
+  "originalPrice": 1600000
+}

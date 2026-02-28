@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: pricing-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/gaadix_pricing_db
+    username: KD2-GANESH-92393
+    password: manager
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+
+server:
+  port: 8086
+
+# Pricing Configuration
+pricing:
+  depreciation:
+    rate-per-year: 0.15
+  market:
+    trend-factor: 0.05
