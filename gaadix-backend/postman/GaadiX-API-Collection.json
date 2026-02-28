@@ -1,0 +1,234 @@
+{
+  "info": {
+    "name": "GaadiX Microservices API",
+    "description": "Complete API collection for GaadiX used car marketplace platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "gateway_url",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "access_token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "User Service",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"email\": \"john@gaadix.com\",\n  \"password\": \"password123\",\n  \"phone\": \"9876543210\"\n}"
+            },
+            "url": "{{gateway_url}}/api/v1/auth/register"
+          }
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@gaadix.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": "{{gateway_url}}/api/v1/auth/login"
+          }
+        },
+        {
+          "name": "Get User by ID",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": "{{gateway_url}}/api/v1/users/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Inventory Service",
+      "item": [
+        {
+          "name": "Create Vehicle",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sellerId\": 1,\n  \"brand\": \"Maruti Suzuki\",\n  \"model\": \"Swift VXI\",\n  \"year\": 2020,\n  \"price\": 550000,\n  \"mileage\": 25000,\n  \"fuelType\": \"PETROL\",\n  \"transmission\": \"MANUAL\",\n  \"color\": \"Red\",\n  \"registrationNumber\": \"MH12AB1234\",\n  \"description\": \"Well maintained\"\n}"
+            },
+            "url": "{{gateway_url}}/api/v1/vehicles"
+          }
+        },
+        {
+          "name": "Get All Vehicles",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": "{{gateway_url}}/api/v1/vehicles"
+          }
+        },
+        {
+          "name": "Get Vehicle by ID",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": "{{gateway_url}}/api/v1/vehicles/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Search Service",
+      "item": [
+        {
+          "name": "Search Vehicles",
+          "request": {
+            "method": "GET",
+            "url": "{{gateway_url}}/api/v1/search/vehicles?brand=Maruti&minPrice=300000&maxPrice=800000"
+          }
+        },
+        {
+          "name": "Search by Location",
+          "request": {
+            "method": "GET",
+            "url": "{{gateway_url}}/api/v1/search/vehicles/nearby?latitude=19.0760&longitude=72.8777&radius=50"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payment Service",
+      "item": [
+        {
+          "name": "Create Payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vehicleId\": 1,\n  \"buyerId\": 1,\n  \"amount\": 550000,\n  \"paymentMethod\": \"UPI\"\n}"
+            },
+            "url": "{{gateway_url}}/api/v1/payments"
+          }
+        },
+        {
+          "name": "Get Payment by ID",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": "{{gateway_url}}/api/v1/payments/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "RTO Service",
+      "item": [
+        {
+          "name": "Verify RTO",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"registrationNumber\": \"MH12AB1234\",\n  \"vehicleId\": 1\n}"
+            },
+            "url": "{{gateway_url}}/api/v1/rto/verify"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pricing Service",
+      "item": [
+        {
+          "name": "Get Pricing Estimate",
+          "request": {
+            "method": "GET",
+            "url": "{{gateway_url}}/api/v1/pricing/estimate?vehicleId=1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notification Service",
+      "item": [
+        {
+          "name": "Send Notification",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 1,\n  \"type\": \"EMAIL\",\n  \"notificationType\": \"PAYMENT_SUCCESS\",\n  \"subject\": \"Payment Successful\",\n  \"message\": \"Your payment was successful\"\n}"
+            },
+            "url": "{{gateway_url}}/api/v1/notifications/send"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Fraud Detection Service",
+      "item": [
+        {
+          "name": "Check Fraud Risk",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vehicleId\": 1,\n  \"sellerId\": 2,\n  \"buyerId\": 1,\n  \"transactionAmount\": 550000\n}"
+            },
+            "url": "{{gateway_url}}/api/v1/fraud/check"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Analytics Service",
+      "item": [
+        {
+          "name": "Get Dashboard Stats",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": "{{gateway_url}}/api/v1/analytics/dashboard"
+          }
+        },
+        {
+          "name": "Get Sales Analytics",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": "{{gateway_url}}/api/v1/analytics/sales"
+          }
+        }
+      ]
+    }
+  ]
+}
